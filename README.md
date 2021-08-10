@@ -17,6 +17,10 @@
 ## Documentos
 
 - [Histórias de Usuário](HistoriasDeUsuario.md)
+- [Diagramas UML](projeto/)
+- [Código Implementado](implementacao/)
+
+
 - [Descrição do Sistema](https://pucminas.instructure.com/courses/70012/pages/sistema-de-matriculas)
 
 
@@ -31,5 +35,3 @@ Mais informações podem ser visualizadas na [descrição do sistema](https://pu
 ### Sprint 1
 
 Modelo de Análise: Diagrama de Caso de Uso referente ao sistema + Descrição em Histórias de Usuário em Markdown (.md), no README do Repositório, com arquivo enviado no Canvas. (3 pontos)
-
----
