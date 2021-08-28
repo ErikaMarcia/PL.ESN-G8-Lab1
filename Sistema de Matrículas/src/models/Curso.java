@@ -2,6 +2,9 @@ package models;
 
 import models.Aluno;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Curso {
@@ -10,12 +13,29 @@ public class Curso {
     private int id;
     private Date inicioMatricula;
     private Date terminoMatricula;
+    private ArrayList<Disciplina> disciplina = new ArrayList<>();
 
-    public void Curso(){}
-    public void InserirDisciplina(){}
-    public void ListarDisciplina(){}
+    public void InserirDisciplina(Disciplina disciplina){
+        this.disciplina.add(disciplina);
+    }
+
+    public void ListarDisciplina(){
+        ArrayList<Disciplina> disciplinas = getDisciplina();
+        Disciplina disciplina;
+        for (int i = 0; i < disciplinas.size(); i++) {
+            disciplina = disciplinas.get(i);
+            System.out.println(disciplina.getId()+" "+disciplina.getNome()+" Optativa: "+ (disciplina.optativa?"Sim":"Não"));
+        }
+    }
+
     public void NotificarFinanceiro(Aluno aluno){}
-    public void DefinirPeriodoMatricula(){}
+
+    public void DefinirPeriodoMatricula(String inicioMatricula, String terminoMatricula) throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        this.inicioMatricula = formato.parse(inicioMatricula);
+        this.terminoMatricula = formato.parse(terminoMatricula);
+    }
+
 
     public String getNome() {
         return nome;
@@ -57,10 +77,13 @@ public class Curso {
         this.terminoMatricula = terminoMatricula;
     }
 
-    public Curso(String nome, int creditos, int id, Date inicioMatricula, Date terminoMatricula) {
+    public ArrayList<Disciplina> getDisciplina() {
+        return disciplina;
+    }
+
+    public Curso(String nome, int creditos, int id) {
+        setNome(nome);
         setCreditos(creditos);
         setId(id);
-        setInicioMatricula(inicioMatricula);
-        setTerminoMatricula(terminoMatricula);
     }
 }
