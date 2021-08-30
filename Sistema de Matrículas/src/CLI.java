@@ -38,9 +38,8 @@ public class CLI {
         }
     }
 
-    public static int solicitarEntrada(String textoPersonaliado) {
-        String texto = textoPersonaliado.isEmpty() ?
-                "Entrada: " : textoPersonaliado;
+    public static int solicitarEntrada() {
+        String texto = "Entrada: ";
 
         System.out.print(texto);
         int input = CLI.lerEntrada();
