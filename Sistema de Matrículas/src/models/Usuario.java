@@ -1,18 +1,22 @@
 package models;
 
 public abstract class Usuario {
- protected int matricula;
- protected String senha;
- protected String nome;
- protected String origem;
+    protected int matricula;
+    protected String senha;
+    protected String nome;
+    protected String origem;
 
- public void login(int matricula, String senha) {
+    public boolean login(int matricula, String senha) {
+        boolean isCredencialCorreta = true;
+        if (matricula != this.matricula) isCredencialCorreta = false;
+        if (!this.senha.equals(senha)) isCredencialCorreta = false;
 
- }
+        return isCredencialCorreta;
+    }
 
- public void recuperarSenha(String senha) {
+    public void recuperarSenha(String senha) {
 
- }
+    }
 
     public int getMatricula() {
         return matricula;

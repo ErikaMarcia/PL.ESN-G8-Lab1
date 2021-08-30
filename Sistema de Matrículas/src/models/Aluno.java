@@ -1,12 +1,19 @@
 package models;
 
+import java.util.Set;
+
 public class Aluno extends Usuario{
-    private Disciplina disciplina;
+    private Set<Oferta> ofertas;
 
-    public void CancelarMatricula(Disciplina disciplina) {
-
-    }
     public Aluno(int matricula, String senha, String nome, String origem) {
         super(matricula, senha, nome, origem);
+    }
+
+    public void matricular(Oferta oferta) {
+        this.ofertas.add(oferta);
+    }
+
+    public void cancelarMatricula(Oferta oferta) {
+        this.ofertas.remove(oferta);
     }
 }
