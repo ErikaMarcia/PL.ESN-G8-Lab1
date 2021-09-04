@@ -1,17 +1,15 @@
 package models;
 
-import views.SecretariaView;
-
 import java.util.HashSet;
 import java.util.Set;
 
-public class Secretaria extends Usuario {
+public class Secretaria  {
     private Set<Disciplina> disciplinas;
     private Set<Oferta> ofertas;
     private Set<Usuario> usuarios;
 
-    public Secretaria(int matricula, String senha, String nome, String origem) {
-        super(matricula, senha, nome, origem);
+    public Secretaria() {
+
         this.usuarios = new HashSet<Usuario>();
         this.ofertas = new HashSet<Oferta>();
         this.disciplinas = new HashSet<Disciplina>();
@@ -33,8 +31,25 @@ public class Secretaria extends Usuario {
         return this.ofertas;
     }
 
+    public Set<Disciplina> listarDisciplinas() {return this.disciplinas;}
+
+    public void cadastrarOferta(Oferta oferta){
+        this.ofertas.add(oferta);
+    }
+    public void cadastarDisciplina(Disciplina disciplina){
+        this.disciplinas.add(disciplina);
+    }
 
     public static Set<Secretaria> listarSecretarias() {
         return new HashSet<Secretaria>();
+    }
+
+    public void matricularAluno(Oferta oferta, Aluno aluno){
+        oferta.matricularAluno(aluno);
+    }
+
+    public void vincularDisciplinaEProfessor(Oferta oferta, Professor professor, Disciplina disciplina ) {
+        oferta.vincularDisciplina(disciplina);
+        oferta.vincularProfessor(professor);
     }
 }
