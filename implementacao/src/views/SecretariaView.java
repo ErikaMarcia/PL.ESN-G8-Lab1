@@ -5,6 +5,9 @@ import models.*;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +16,12 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class SecretariaView {
-    Secretaria secretaria = new Secretaria();
+    Secretaria secretaria;
+
+    public SecretariaView() {
+        this.secretaria = new Secretaria();
+        lerDados();
+    }
 
     public void listarSecretarias() {
         System.out.println("= Listando Secretarias =");
@@ -139,6 +147,19 @@ public class SecretariaView {
         String json = g.toJson(secretaria);
         write(json);
     }
+
+    public void lerDados() {
+        try {
+            String textoArquivo = read();
+            Gson g = new Gson();
+            this.secretaria = g.fromJson(textoArquivo, Secretaria.class);
+            System.out.println("> Arquivo importado. Recuperando base de dados. <\n");
+        } catch (IOException e) {
+            System.out.println("> Nenhum arquivo importado. Iniciando nova base de dados. <\n");
+        }
+
+    }
+
     public void write(String json) {
         try{
             File arquivo = new File("src/data/secretaria.txt");
@@ -149,6 +170,16 @@ public class SecretariaView {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public String read() throws IOException {
+        String textoArquivo = "";
+
+        Path fileName = Path.of("src/data/secretaria.txt");
+        textoArquivo = Files.readString(fileName);
+        System.out.println(textoArquivo);
+
+        return textoArquivo;
     }
 
 

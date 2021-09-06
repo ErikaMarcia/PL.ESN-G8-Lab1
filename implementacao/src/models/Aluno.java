@@ -9,6 +9,14 @@ public class Aluno extends Usuario{
         super(matricula, senha, nome, origem);
     }
 
+    public Aluno(Usuario usuario) {
+        super(usuario.getMatricula(),
+                usuario.getSenha(),
+                usuario.getNome(),
+                usuario.getOrigem()
+        );
+    }
+
     public void matricular(Oferta oferta) {
         this.ofertas.add(oferta);
     }

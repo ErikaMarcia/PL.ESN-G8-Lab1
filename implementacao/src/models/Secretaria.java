@@ -6,25 +6,63 @@ import java.util.Set;
 public class Secretaria  {
     private Set<Disciplina> disciplinas;
     private Set<Oferta> ofertas;
-    private Set<Usuario> usuarios;
+    private Set<Professor> professores;
+    private Set<Aluno> alunos;
 
     public Secretaria() {
-
-        this.usuarios = new HashSet<Usuario>();
         this.ofertas = new HashSet<Oferta>();
         this.disciplinas = new HashSet<Disciplina>();
+        this.professores = new HashSet<Professor>();
+        this.alunos = new HashSet<Aluno>();
     }
 
-    public void cadastrarUsuario(Usuario usuario) {
-        this.usuarios.add(usuario);
+    public void cadastrarUsuario(Aluno usuario) {
+        Aluno aluno = new Aluno(usuario);
+        this.alunos.add(aluno);
     }
 
-    public void removerUsuario(Usuario usuario){
-        this.usuarios.remove(usuario);
+    public void cadastrarUsuario(Professor usuario) {
+        Professor professor = new Professor(usuario);
+        this.professores.add(professor);
+    }
+
+//    public void cadastrarUsuario(Usuario usuario) {
+//        if (usuario instanceof Aluno) {
+//            Aluno aluno = new Aluno(usuario);
+//            this.alunos.add(aluno);
+//        }
+//        if (usuario instanceof Professor) {
+//            Professor professor = new Professor(usuario);
+//            this.professores.add(professor);
+//        }
+//    }
+
+//    public void removerUsuario(Usuario usuario){
+//        if (usuario instanceof Aluno) {
+//            Aluno aluno = new Aluno(usuario);
+//            this.alunos.add(aluno);
+//        }
+//        if (usuario instanceof Professor) {
+//            Professor professor = new Professor(usuario);
+//            this.professores.add(professor);
+//        }
+//    }
+
+    public void removerUsuario(Aluno usuario){
+        Aluno aluno = new Aluno(usuario);
+        this.alunos.remove(aluno);
+    }
+
+    public void removerUsuario(Professor usuario){
+        Professor professor = new Professor(usuario);
+        this.professores.add(professor);
     }
 
     public Set<Usuario> listarUsuarios() {
-        return this.usuarios;
+        Set<Usuario> usuarios = new HashSet<Usuario>();
+        usuarios.addAll(this.professores);
+        usuarios.addAll(this.alunos);
+        return usuarios;
     }
 
     public Set<Oferta> listarOfertas() {

@@ -8,5 +8,13 @@ public class Professor extends Usuario{
         super(matricula, senha, nome, origem);
     }
 
+    public Professor(Usuario usuario) {
+        super(usuario.getMatricula(),
+                usuario.getSenha(),
+                usuario.getNome(),
+                usuario.getOrigem()
+        );
+    }
+
     public void consultar(int disciplina) { }
 }

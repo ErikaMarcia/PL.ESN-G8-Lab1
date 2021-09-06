@@ -6,6 +6,10 @@ public abstract class Usuario {
     protected String nome;
     protected String origem;
 
+//    public Usuario () {
+//
+//    }
+
     public boolean login(int matricula, String senha) {
         boolean isCredencialCorreta = true;
         if (matricula != this.matricula) isCredencialCorreta = false;
